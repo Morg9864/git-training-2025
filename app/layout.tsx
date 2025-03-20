@@ -46,7 +46,7 @@ export default function RootLayout({
             backgroundSize: "contain",
             opacity: 0.05,
           }}
-        ></div>
+        ></div> 
 
         <div className="md:hidden flex justify-center p-4">
           <Logo />

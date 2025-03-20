@@ -78,6 +78,25 @@ git checkout -b [nom-branche] # Crée et bascule sur une nouvelle branche`}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="mb-8"
+        >
+          <h3 className="flex items-center">
+            <GitBranch className="mr-2 text-[#8C2626]" /> Pousser la branche sur GitHub
+          </h3>
+          <CodeBlock
+            code={`git push --set-upstream origin [nom-branche]`}
+          />
+
+          <CommandImage command="branch" />
+        </motion.div>
+      </section>
+
+
+      <section>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
           className="mb-8"
         >

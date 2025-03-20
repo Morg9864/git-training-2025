@@ -66,6 +66,7 @@ export default function Branches() {
           <CodeBlock
             code={`git branch [nom-branche] # Crée une nouvelle branche
 git checkout [nom-branche] # Change vers la branche spécifiée
+# git swit
 git checkout -b [nom-branche] # Crée et bascule sur une nouvelle branche`}
           />
 

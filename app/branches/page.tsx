@@ -66,11 +66,14 @@ export default function Branches() {
           <CodeBlock
             code={`git branch [nom-branche] # Crée une nouvelle branche
 git checkout [nom-branche] # Change vers la branche spécifiée
-# git swit
 git checkout -b [nom-branche] # Crée et bascule sur une nouvelle branche`}
           />
-
           <CommandImage command="branch" />
+
+          <CodeBlock
+            code={`git switch [nom-branche] # Change vers la branche spécifiée`}
+          />
+          <CommandImage command="switch" />
         </motion.div>
       </section>
 
@@ -88,7 +91,7 @@ git checkout -b [nom-branche] # Crée et bascule sur une nouvelle branche`}
             code={`git push --set-upstream origin [nom-branche]`}
           />
 
-          <CommandImage command="branch" />
+          <CommandImage command="upstream" />
         </motion.div>
       </section>
 

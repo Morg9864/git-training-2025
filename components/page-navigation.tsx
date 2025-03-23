@@ -15,7 +15,7 @@ export const pageStructure = [
   { path: "/pull-request", label: "6. Pull Requests" },
   { path: "/bonnes-pratiques", label: "7. Bonnes pratiques" },
   { path: "/outils", label: "8. Outils recommandés" },
-  { path: "/aller-plus-loin", label: "9. Aller plus loin" },
+  { path: "/glossaire", label: "9. Glossaire" },
   { path: "/cle-ssh", label: "Configuration clé SSH" },
 ]
 

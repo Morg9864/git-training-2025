@@ -44,7 +44,7 @@ export default function Home() {
             { title: "Pull Requests", path: "/pull-request", description: "Collaboration et revue de code" },
             { title: "Bonnes pratiques", path: "/bonnes-pratiques", description: "Conseils pour le travail en équipe" },
             { title: "Outils recommandés", path: "/outils", description: "Extensions et outils utiles" },
-            { title: "Aller plus loin", path: "/aller-plus-loin", description: "Fonctionnalités avancées" },
+            { title: "Glossaire", path: "/glossaire", description: "Référence complète des commandes Git" },
             { title: "Configuration clé SSH", path: "/cle-ssh", description: "Authentification sécurisée avec GitHub" },
           ].map((item, index) => (
             <motion.div

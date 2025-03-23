@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "framer-motion"
 import {
   Menu,
   X,
-  GitBranch,
   GitCommit,
   GitMerge,
   GitPullRequest,
@@ -18,8 +17,7 @@ import {
   BookOpen,
   CheckCircle,
   Wrench,
-  Compass, 
-  Key
+  Key,
 } from "lucide-react"
 import Logo from "./logo"
 
@@ -33,7 +31,7 @@ const navItems = [
   { path: "/pull-request", label: "6. Pull Requests", icon: <GitPullRequest className="w-5 h-5 mr-2" /> },
   { path: "/bonnes-pratiques", label: "7. Bonnes pratiques", icon: <CheckCircle className="w-5 h-5 mr-2" /> },
   { path: "/outils", label: "8. Outils recommandés", icon: <Wrench className="w-5 h-5 mr-2" /> },
-  { path: "/aller-plus-loin", label: "9. Aller plus loin", icon: <Compass className="w-5 h-5 mr-2" /> },
+  { path: "/glossaire", label: "9. Glossaire", icon: <BookOpen className="w-5 h-5 mr-2" /> },
   { path: "/cle-ssh", label: "Configuration clé SSH", icon: <Key className="w-5 h-5 mr-2" /> },
   
 ]

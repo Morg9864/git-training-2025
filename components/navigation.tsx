@@ -111,8 +111,8 @@ export default function Navigation() {
                             className={`
                               group flex items-center gap-3 px-4 py-3 rounded-xl
                               transition-all duration-300 border
-                              ${isActive 
-                                ? `${colors.bg} ${colors.text} ${colors.border} shadow-md scale-105` 
+                              ${isActive
+                                ? `${colors.bg} ${colors.text} ${colors.border} shadow-md scale-105`
                                 : `hover:bg-gray-50 text-gray-700 border-transparent ${colors.hover}`
                               }
                             `}
@@ -148,7 +148,7 @@ export default function Navigation() {
             <div className="mb-8">
               <Logo />
             </div>
-            
+
             {/* Progress indicator */}
             <div className="mb-6 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-200/50">
               <p className="text-xs font-semibold text-blue-600 mb-1">FORMATION GIT & GITHUB</p>
@@ -173,8 +173,8 @@ export default function Navigation() {
                         className={`
                           group relative flex items-center gap-3 px-4 py-3 rounded-xl
                           transition-all duration-300 border overflow-hidden
-                          ${isActive 
-                            ? `${colors.bg} ${colors.text} ${colors.border} shadow-md` 
+                          ${isActive
+                            ? `${colors.bg} ${colors.text} ${colors.border} shadow-md`
                             : `hover:bg-gray-50 text-gray-700 border-transparent hover:border-gray-200`
                           }
                         `}
@@ -187,21 +187,21 @@ export default function Navigation() {
                             transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                           />
                         )}
-                        
+
                         {/* Icon */}
                         <div className={`
                           flex-shrink-0 transition-all duration-300
-                          ${isActive 
-                            ? `${colors.text} scale-110` 
+                          ${isActive
+                            ? `${colors.text} scale-110`
                             : 'text-gray-400 group-hover:text-gray-600 group-hover:scale-110'
                           }
                         `}>
                           {item.icon}
                         </div>
-                        
+
                         {/* Label */}
                         <span className="font-medium text-sm flex-1">{item.label}</span>
-                        
+
                         {/* Active dot */}
                         {isActive && (
                           <motion.div

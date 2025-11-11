@@ -18,6 +18,9 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+
+  basePath: '/git',
+  assetPrefix: '/git',
 }
 
 mergeConfig(nextConfig, userConfig)

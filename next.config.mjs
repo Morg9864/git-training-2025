@@ -20,7 +20,6 @@ const nextConfig = {
   },
 
   basePath: '/git',
-  assetPrefix: '/git',
 }
 
 mergeConfig(nextConfig, userConfig)

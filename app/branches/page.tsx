@@ -12,117 +12,87 @@ export default function Branches() {
   const pathname = usePathname()
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-      <h1>Branches et Fusion (Merging)</h1>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+      <h1 className="font-[family-name:var(--font-syne)]">Branches et Fusion (Merging)</h1>
 
       <ContentSection delay={0.1}>
-        <div className="p-6 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border-l-4 border-blue-500">
-          <div className="flex items-start gap-3 mb-4">
-            <Lightbulb className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
-            <div>
-              <h3 className="text-xl font-bold text-blue-900 mb-2">Qu'est-ce qu'une branche ?</h3>
-              <p className="text-blue-800 leading-relaxed">
-                Les branches dans Git sont des <strong className="text-gradient">copies isolées</strong> de votre code qui permettent de travailler sur des
-                fonctionnalités ou corrections sans perturber la branche principale.
-              </p>
-            </div>
+        <div className="flex items-start gap-3 mb-5">
+          <Lightbulb className="h-5 w-5 text-[#e03838] flex-shrink-0 mt-1" />
+          <div>
+            <h3 className="text-base font-bold text-gray-900 mb-2 mt-0">Qu'est-ce qu'une branche ?</h3>
+            <p className="text-gray-700 leading-relaxed m-0">
+              Les branches dans Git sont des <strong className="text-[#e03838]">copies isolées</strong> de votre code qui permettent de travailler sur des
+              fonctionnalités ou corrections sans perturber la branche principale.
+            </p>
           </div>
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-4 mt-4">
-            <div className="p-4 bg-white rounded-lg border border-blue-200">
+        <div className="grid md:grid-cols-2 gap-3">
+          {[
+            { icon: "🔒", title: "Isolation", desc: "Développez et testez sans risquer d'introduire des erreurs dans le code stable" },
+            { icon: "👥", title: "Collaboration", desc: "Travaillez en parallèle sur différentes parties du projet" },
+            { icon: "📋", title: "Gestion des versions", desc: "Maintenez un historique clair des évolutions" },
+            { icon: "🧪", title: "Expérimentation", desc: "Testez de nouvelles idées sans impact sur le projet principal" },
+          ].map((item) => (
+            <div key={item.title} className="p-4 bg-gray-50 rounded-lg border border-gray-200">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 bg-blue-500 rounded-xl p-5 flex items-center justify-center">
-                  <span className="text-white font-bold">🔒</span>
-                </div>
-                <h4 className="font-semibold text-blue-900">Isolation</h4>
+                <span className="text-lg">{item.icon}</span>
+                <h4 className="font-semibold text-gray-900 text-sm mt-0 mb-0">{item.title}</h4>
               </div>
-              <p className="text-blue-800 text-sm">Développez et testez sans risquer d'introduire des erreurs dans le code stable</p>
+              <p className="text-gray-600 text-sm m-0">{item.desc}</p>
             </div>
-
-            <div className="p-4 bg-white rounded-lg border border-blue-200">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 bg-green-500 p-5 rounded-xl flex items-center justify-center">
-                  <span className="text-white font-bold">👥</span>
-                </div>
-                <h4 className="font-semibold text-blue-900">Collaboration</h4>
-              </div>
-              <p className="text-blue-800 text-sm">Travaillez en parallèle sur différentes parties du projet</p>
-            </div>
-
-            <div className="p-4 bg-white rounded-lg border border-blue-200">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 bg-purple-500 rounded-xl p-5 flex items-center justify-center">
-                  <span className="text-white font-bold">📋</span>
-                </div>
-                <h4 className="font-semibold text-blue-900">Gestion des versions</h4>
-              </div>
-              <p className="text-blue-800 text-sm">Maintenez un historique clair des évolutions</p>
-            </div>
-
-            <div className="p-4 bg-white rounded-lg border border-blue-200">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 bg-orange-500 rounded-xl p-5 flex items-center justify-center">
-                  <span className="text-white font-bold">🧪</span>
-                </div>
-                <h4 className="font-semibold text-blue-900">Expérimentation</h4>
-              </div>
-              <p className="text-blue-800 text-sm">Testez de nouvelles idées sans impact sur le projet principal</p>
-            </div>
-          </div>
+          ))}
         </div>
       </ContentSection>
 
       <ContentSection delay={0.2}>
-        <div className="flex items-center gap-3 mb-6">
-          <div className="p-3 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl">
-            <GitBranch className="h-6 w-6 text-white" />
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-2.5 bg-[#e03838] rounded-lg">
+            <GitBranch className="h-5 w-5 text-white" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-800">Création et navigation de branches</h2>
+          <h2 className="mt-0 mb-0">Création et navigation de branches</h2>
         </div>
 
-        <div className="space-y-6">
-          {/* Créer une branche */}
-          <div className="p-5 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border-l-4 border-green-500">
-            <h4 className="font-semibold text-green-900 mb-3 text-lg flex items-center gap-2">
-              <GitBranch className="h-5 w-5" />
+        <div className="space-y-4">
+          <div className="p-5 bg-[#fef2f2] rounded-lg border-l-4 border-[#e03838]">
+            <h4 className="font-semibold text-gray-900 mb-2 mt-0 flex items-center gap-2 text-sm">
+              <GitBranch className="h-4 w-4 text-[#e03838]" />
               Créer une nouvelle branche
             </h4>
             <CodeBlock code="git branch [nom-branche]" />
-            <p className="mt-3 text-green-800">
+            <p className="mt-3 text-gray-700 m-0 text-sm">
               Crée une nouvelle branche sans basculer dessus.
             </p>
             <CommandImage command="branch" />
           </div>
 
-          {/* Changer de branche */}
-          <div className="p-5 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl border-l-4 border-blue-500">
-            <h4 className="font-semibold text-blue-900 mb-3 text-lg flex items-center gap-2">
-              <ArrowRight className="h-5 w-5" />
+          <div className="p-5 bg-[#fef2f2] rounded-lg border-l-4 border-[#e03838]">
+            <h4 className="font-semibold text-gray-900 mb-2 mt-0 flex items-center gap-2 text-sm">
+              <ArrowRight className="h-4 w-4 text-[#e03838]" />
               Changer de branche
             </h4>
             <CodeBlock code="git checkout [nom-branche]" />
-            <p className="mt-3 text-blue-800 mb-3">
+            <p className="mt-3 text-gray-700 mb-3 text-sm">
               Bascule vers la branche spécifiée. <strong>Méthode classique.</strong>
             </p>
 
-            <div className="mt-4 p-3 bg-cyan-100 rounded-lg">
-              <p className="text-cyan-900 font-semibold mb-2">✨ Méthode moderne (recommandée) :</p>
+            <div className="mt-4 p-3 bg-white border border-red-100 rounded-lg">
+              <p className="text-gray-900 font-semibold mb-2 text-sm m-0">Méthode moderne (recommandée) :</p>
               <CodeBlock code="git switch [nom-branche]" />
-              <p className="text-cyan-800 text-sm mt-2">
-                Plus explicite et intuitif que <code className="bg-cyan-200 px-1 rounded">checkout</code>
+              <p className="text-gray-700 text-sm mt-2 m-0">
+                Plus explicite et intuitif que <code className="bg-red-100 px-1 rounded">checkout</code>
               </p>
               <CommandImage command="switch" />
             </div>
           </div>
 
-          {/* Créer et basculer */}
-          <div className="p-5 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border-l-4 border-purple-500">
-            <h4 className="font-semibold text-purple-900 mb-3 text-lg flex items-center gap-2">
-              <span className="text-xl">⚡</span>
+          <div className="p-5 bg-[#fef2f2] rounded-lg border-l-4 border-[#e03838]">
+            <h4 className="font-semibold text-gray-900 mb-2 mt-0 flex items-center gap-2 text-sm">
+              <span>⚡</span>
               Créer et basculer en une commande
             </h4>
             <CodeBlock code="git checkout -b [nom-branche]" />
-            <p className="mt-3 text-purple-800">
+            <p className="mt-3 text-gray-700 m-0 text-sm">
               Raccourci pratique : crée une nouvelle branche ET bascule dessus immédiatement.
             </p>
           </div>
@@ -130,60 +100,56 @@ export default function Branches() {
       </ContentSection>
 
       <ContentSection delay={0.3}>
-        <div className="flex items-center gap-3 mb-6">
-          <div className="p-3 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl">
-            <Upload className="h-6 w-6 text-white" />
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-2.5 bg-[#e03838] rounded-lg">
+            <Upload className="h-5 w-5 text-white" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-800">Pousser la branche sur GitHub</h2>
+          <h2 className="mt-0 mb-0">Pousser la branche sur GitHub</h2>
         </div>
 
-        <div className="p-5 bg-gradient-to-br from-orange-50 to-red-50 rounded-xl border-l-4 border-orange-500">
+        <div className="p-5 bg-[#fef2f2] rounded-lg border-l-4 border-[#e03838]">
           <CodeBlock code="git push --set-upstream origin [nom-branche]" />
-          <p className="mt-3 text-orange-800">
+          <p className="mt-3 text-gray-700 m-0 text-sm">
             Envoie votre branche locale vers GitHub et configure le suivi automatique.
-            Les prochains <code className="bg-orange-100 px-2 py-0.5 rounded">git push</code> seront plus simples !
+            Les prochains <code className="bg-red-100 px-2 py-0.5 rounded">git push</code> seront plus simples !
           </p>
           <CommandImage command="upstream" />
 
-          <div className="mt-4 p-3 bg-orange-100 rounded-lg">
-            <p className="text-orange-900 text-sm">
-              💡 <strong>Raccourci :</strong> Après la première fois, utilisez simplement <code className="bg-orange-200 px-2 py-0.5 rounded">git push</code>
+          <div className="mt-4 p-3 bg-white border border-red-100 rounded-lg">
+            <p className="text-gray-900 text-sm m-0">
+              <strong>Raccourci :</strong> Après la première fois, utilisez simplement <code className="bg-red-100 px-2 py-0.5 rounded">git push</code>
             </p>
           </div>
         </div>
       </ContentSection>
 
       <ContentSection delay={0.4}>
-        <div className="flex items-center gap-3 mb-6">
-          <div className="p-3 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl">
-            <GitMerge className="h-6 w-6 text-white" />
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-2.5 bg-[#e03838] rounded-lg">
+            <GitMerge className="h-5 w-5 text-white" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-800">Fusionner des branches</h2>
+          <h2 className="mt-0 mb-0">Fusionner des branches</h2>
         </div>
 
-        <div className="p-5 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl border-l-4 border-indigo-500">
-          <h4 className="font-semibold text-indigo-900 mb-3 text-lg">Workflow de fusion</h4>
+        <div className="p-5 bg-[#fef2f2] rounded-lg border-l-4 border-[#e03838]">
+          <h4 className="font-semibold text-gray-900 mb-3 mt-0 text-sm">Workflow de fusion</h4>
 
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">1</div>
-              <div className="flex-1">
-                <p className="text-indigo-800 mb-2">Retournez sur la branche de destination (généralement <code className="bg-indigo-100 px-2 py-0.5 rounded">main</code>)</p>
+          <div className="space-y-3 mb-4">
+            {[
+              "Retournez sur la branche de destination (généralement main)",
+              "Fusionnez la branche de fonctionnalité",
+            ].map((text, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className="w-7 h-7 bg-[#e03838] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">{i + 1}</div>
+                <p className="text-gray-700 text-sm m-0">{text}</p>
               </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">2</div>
-              <div className="flex-1">
-                <p className="text-indigo-800 mb-2">Fusionnez la branche de fonctionnalité</p>
-              </div>
-            </div>
+            ))}
           </div>
 
           <CodeBlock code={`git checkout main\ngit merge [nom-branche]`} />
 
-          <p className="mt-3 text-indigo-800">
-            Intègre les modifications de <code className="bg-indigo-100 px-2 py-0.5 rounded">[nom-branche]</code> dans <code className="bg-indigo-100 px-2 py-0.5 rounded">main</code>.
+          <p className="mt-3 text-gray-700 m-0 text-sm">
+            Intègre les modifications de <code className="bg-red-100 px-2 py-0.5 rounded">[nom-branche]</code> dans <code className="bg-red-100 px-2 py-0.5 rounded">main</code>.
           </p>
 
           <CommandImage command="merge" />
@@ -191,73 +157,48 @@ export default function Branches() {
       </ContentSection>
 
       <ContentSection delay={0.5}>
-        <div className="flex items-center gap-3 mb-6">
-          <div className="p-3 bg-gradient-to-br from-red-500 to-pink-500 rounded-xl">
-            <Trash2 className="h-6 w-6 text-white" />
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-2.5 bg-[#e03838] rounded-lg">
+            <Trash2 className="h-5 w-5 text-white" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-800">Supprimer une branche</h2>
+          <h2 className="mt-0 mb-0">Supprimer une branche</h2>
         </div>
 
-        <div className="p-5 bg-gradient-to-br from-red-50 to-pink-50 rounded-xl border-l-4 border-red-500">
-          <h4 className="font-semibold text-red-900 mb-3 text-lg">Nettoyage après fusion</h4>
+        <div className="p-5 bg-[#fef2f2] rounded-lg border-l-4 border-[#e03838]">
+          <h4 className="font-semibold text-gray-900 mb-3 mt-0 text-sm">Nettoyage après fusion</h4>
           <CodeBlock code="git branch -d [nom-branche]" />
-          <p className="mt-3 text-red-800">
+          <p className="mt-3 text-gray-700 m-0 text-sm">
             Supprime une branche locale une fois fusionnée. L'option <code className="bg-red-100 px-2 py-0.5 rounded">-d</code> est sécurisée :
             elle refuse de supprimer une branche non fusionnée.
           </p>
           <CommandImage command="branch-d" />
 
-          <div className="mt-4 p-3 bg-red-100 rounded-lg">
-            <p className="text-red-900 text-sm">
-              ⚠️ <strong>Suppression forcée :</strong> Utilisez <code className="bg-red-200 px-2 py-0.5 rounded">-D</code> (majuscule) pour forcer la suppression même si non fusionnée. <strong>À utiliser avec précaution !</strong>
+          <div className="mt-4 p-3 bg-white border border-red-100 rounded-lg">
+            <p className="text-gray-900 text-sm m-0">
+              <strong>Suppression forcée :</strong> Utilisez <code className="bg-red-100 px-2 py-0.5 rounded">-D</code> (majuscule) pour forcer la suppression même si non fusionnée. <strong>À utiliser avec précaution !</strong>
             </p>
           </div>
         </div>
       </ContentSection>
 
       <ContentSection delay={0.6}>
-        <div className="p-6 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border-2 border-yellow-300">
-          <h3 className="text-2xl font-bold text-yellow-900 mb-4 flex items-center gap-2">
-            <span className="text-2xl">🎯</span>
-            Workflow typique avec les branches
-          </h3>
-          <div className="space-y-3">
-            <div className="flex items-start gap-3 p-3 bg-white rounded-lg">
-              <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">1</div>
+        <h3 className="text-base font-bold text-gray-900 mb-4 mt-0">Workflow typique avec les branches</h3>
+        <div className="space-y-2">
+          {[
+            { code: "git checkout -b feature/nouvelle-fonctionnalite", desc: "Créer une branche de fonctionnalité" },
+            { code: "git add . && git commit -m \"...\"", desc: "Travailler et commiter sur la branche" },
+            { code: "git push -u origin feature/nouvelle-fonctionnalite", desc: "Pousser vers GitHub" },
+            { code: "git checkout main && git merge feature/nouvelle-fonctionnalite", desc: "Fusionner dans main" },
+            { code: "git branch -d feature/nouvelle-fonctionnalite", desc: "Supprimer la branche fusionnée" },
+          ].map((item, i) => (
+            <div key={i} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+              <div className="w-6 h-6 bg-[#e03838] rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0 mt-0.5">{i + 1}</div>
               <div>
-                <code className="bg-yellow-100 px-2 py-1 rounded text-sm">git checkout -b feature/nouvelle-fonctionnalite</code>
-                <p className="text-yellow-800 text-sm mt-1">Créer une branche de fonctionnalité</p>
+                <code className="bg-[#fef2f2] border border-red-100 px-2 py-1 rounded text-xs font-mono block mb-1">{item.code}</code>
+                <p className="text-gray-600 text-xs m-0">{item.desc}</p>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-3 bg-white rounded-lg">
-              <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">2</div>
-              <div>
-                <code className="bg-yellow-100 px-2 py-1 rounded text-sm">git add . && git commit -m "..."</code>
-                <p className="text-yellow-800 text-sm mt-1">Travailler et commiter sur la branche</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 p-3 bg-white rounded-lg">
-              <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">3</div>
-              <div>
-                <code className="bg-yellow-100 px-2 py-1 rounded text-sm">git push -u origin feature/nouvelle-fonctionnalite</code>
-                <p className="text-yellow-800 text-sm mt-1">Pousser vers GitHub</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 p-3 bg-white rounded-lg">
-              <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">4</div>
-              <div>
-                <code className="bg-yellow-100 px-2 py-1 rounded text-sm">git checkout main && git merge feature/nouvelle-fonctionnalite</code>
-                <p className="text-yellow-800 text-sm mt-1">Fusionner dans main</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 p-3 bg-white rounded-lg">
-              <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">5</div>
-              <div>
-                <code className="bg-yellow-100 px-2 py-1 rounded text-sm">git branch -d feature/nouvelle-fonctionnalite</code>
-                <p className="text-yellow-800 text-sm mt-1">Supprimer la branche fusionnée</p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </ContentSection>
 
@@ -265,4 +206,3 @@ export default function Branches() {
     </motion.div>
   )
 }
-

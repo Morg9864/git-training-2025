@@ -31,49 +31,48 @@ export default function PageNavigation({ currentPath }: PageNavigationProps) {
 
   return (
     <motion.div
-      className="mt-16 pt-8 border-t border-gray-200"
+      className="mt-12 pt-8 border-t border-gray-200"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
     >
       <div className="flex justify-between items-center">
         {prevPage ? (
-          <motion.div whileHover={{ x: -5 }} transition={{ duration: 0.2 }}>
-            <Link href={prevPage.path} className="flex items-center group">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 group-hover:bg-[#F24141] transition-colors duration-300">
-                <ChevronLeft className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors duration-300" />
+          <motion.div whileHover={{ x: -4 }} transition={{ duration: 0.2 }}>
+            <Link href={prevPage.path} className="flex items-center gap-3 group">
+              <div className="flex items-center justify-center w-9 h-9 rounded-lg border border-gray-200 bg-white group-hover:bg-[#e03838] group-hover:border-[#e03838] transition-all duration-200">
+                <ChevronLeft className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors duration-200" />
               </div>
-              <div className="ml-3">
-                <p className="text-sm text-gray-500">Précédent</p>
-                <p className="font-medium text-[#8C2626] group-hover:text-[#F24141] transition-colors duration-300">
+              <div>
+                <p className="text-xs text-gray-400 font-medium uppercase tracking-wider">Précédent</p>
+                <p className="text-sm font-semibold text-gray-700 group-hover:text-[#e03838] transition-colors duration-200">
                   {prevPage.label}
                 </p>
               </div>
             </Link>
           </motion.div>
         ) : (
-          <div></div>
+          <div />
         )}
 
         {nextPage ? (
-          <motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
-            <Link href={nextPage.path} className="flex items-center group text-right">
-              <div className="mr-3">
-                <p className="text-sm text-gray-500">Suivant</p>
-                <p className="font-medium text-[#8C2626] group-hover:text-[#F24141] transition-colors duration-300">
+          <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+            <Link href={nextPage.path} className="flex items-center gap-3 group text-right">
+              <div>
+                <p className="text-xs text-gray-400 font-medium uppercase tracking-wider">Suivant</p>
+                <p className="text-sm font-semibold text-gray-700 group-hover:text-[#e03838] transition-colors duration-200">
                   {nextPage.label}
                 </p>
               </div>
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 group-hover:bg-[#F24141] transition-colors duration-300">
-                <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors duration-300" />
+              <div className="flex items-center justify-center w-9 h-9 rounded-lg border border-gray-200 bg-white group-hover:bg-[#e03838] group-hover:border-[#e03838] transition-all duration-200">
+                <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors duration-200" />
               </div>
             </Link>
           </motion.div>
         ) : (
-          <div></div>
+          <div />
         )}
       </div>
     </motion.div>
   )
 }
-

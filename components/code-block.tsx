@@ -20,26 +20,33 @@ export default function CodeBlock({ code, language = "bash" }: CodeBlockProps) {
 
   return (
     <motion.div
-      className="relative my-6 rounded-lg overflow-hidden"
-      initial={{ opacity: 0, y: 20 }}
+      className="relative my-4 rounded-lg overflow-hidden border border-gray-200"
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
     >
-      <div
-        className="px-4 py-2 text-sm flex justify-between items-center"
-        style={{ backgroundColor: "#0D0D0D", color: "white" }}
-      >
-        <span>{language}</span>
+      <div className="px-4 py-2 text-xs flex justify-between items-center bg-gray-900 text-gray-400 font-mono">
+        <span className="text-[#e03838] font-semibold uppercase tracking-wider">{language}</span>
         <button
           onClick={copyToClipboard}
-          className="text-gray-300 hover:text-white transition-colors"
+          className="flex items-center gap-1.5 hover:text-white transition-colors text-xs"
           aria-label="Copier le code"
         >
-          {copied ? <Check size={18} /> : <Copy size={18} />}
+          {copied ? (
+            <>
+              <Check size={14} className="text-green-400" />
+              <span className="text-green-400">Copié</span>
+            </>
+          ) : (
+            <>
+              <Copy size={14} />
+              <span>Copier</span>
+            </>
+          )}
         </button>
       </div>
-      <pre className="bg-gray-100 p-4 whitespace-pre-wrap break-words">
-        <code className="text-[#0D0D0D]">{code}</code>
+      <pre className="bg-[#111111] p-4 whitespace-pre-wrap break-words m-0 border-0 rounded-none">
+        <code className="text-gray-100 font-mono text-sm leading-relaxed">{code}</code>
       </pre>
     </motion.div>
   )

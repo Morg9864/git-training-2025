@@ -12,7 +12,6 @@ type GlossaireItem = {
 	category: string
 }
 
-// Import sécurisé du glossaire
 const glossaireData: Record<string, string> = {
 	"git init": "Initialise un nouveau dépôt Git local.",
 	"git clone [repo_url]": "Clone un dépôt distant dans le répertoire courant.",
@@ -83,10 +82,9 @@ const glossaireData: Record<string, string> = {
 	"git shortlog -s": "Affiche un résumé chiffré des commits par auteur.",
 	"git tag -a [tag] -m [message]": "Crée une étiquette annotée avec un message associé.",
 	"git tag -l": "Liste toutes les étiquettes existantes dans le dépôt.",
-	"git pull --ff-only": "Récupère et fusionne uniquement si la fusion est possible en fast-forward."
+	"git pull --ff-only": "Récupère et fusionne uniquement si la fusion est possible en fast-forward.",
 }
 
-// Catégorisation des commandes
 const categorizeCommand = (command: string): string => {
 	if (command.includes("branch") || command.includes("checkout")) return "branches"
 	if (command.includes("commit") || command.includes("add") || command.includes("status")) return "commits"
@@ -100,15 +98,15 @@ const categorizeCommand = (command: string): string => {
 }
 
 const categoryConfig = {
-	commits: { label: "Commits & Status", icon: GitCommit, color: "from-blue-500 to-cyan-500", bg: "bg-blue-50" },
-	branches: { label: "Branches", icon: GitBranch, color: "from-green-500 to-emerald-500", bg: "bg-green-50" },
-	fusion: { label: "Fusion & Rebase", icon: GitMerge, color: "from-purple-500 to-pink-500", bg: "bg-purple-50" },
-	distant: { label: "Dépôts Distants", icon: Server, color: "from-orange-500 to-red-500", bg: "bg-orange-50" },
-	config: { label: "Configuration", icon: Settings, color: "from-yellow-500 to-amber-500", bg: "bg-yellow-50" },
-	historique: { label: "Historique & Logs", icon: Archive, color: "from-indigo-500 to-blue-500", bg: "bg-indigo-50" },
-	gestion: { label: "Gestion & Nettoyage", icon: Terminal, color: "from-red-500 to-rose-500", bg: "bg-red-50" },
-	avance: { label: "Fonctions Avancées", icon: Archive, color: "from-gray-600 to-gray-800", bg: "bg-gray-50" },
-	autres: { label: "Autres", icon: Terminal, color: "from-gray-500 to-gray-700", bg: "bg-gray-50" },
+	commits: { label: "Commits & Status", icon: GitCommit, accent: "border-gray-300 bg-gray-100 text-gray-600" },
+	branches: { label: "Branches", icon: GitBranch, accent: "border-gray-300 bg-gray-100 text-gray-600" },
+	fusion: { label: "Fusion & Rebase", icon: GitMerge, accent: "border-gray-300 bg-gray-100 text-gray-600" },
+	distant: { label: "Dépôts Distants", icon: Server, accent: "border-gray-300 bg-gray-100 text-gray-600" },
+	config: { label: "Configuration", icon: Settings, accent: "border-gray-300 bg-gray-100 text-gray-600" },
+	historique: { label: "Historique & Logs", icon: Archive, accent: "border-gray-300 bg-gray-100 text-gray-600" },
+	gestion: { label: "Gestion & Nettoyage", icon: Terminal, accent: "border-red-200 bg-[#fef2f2] text-[#e03838]" },
+	avance: { label: "Fonctions Avancées", icon: Archive, accent: "border-gray-300 bg-gray-100 text-gray-600" },
+	autres: { label: "Autres", icon: Terminal, accent: "border-gray-300 bg-gray-100 text-gray-600" },
 }
 
 export default function Glossaire() {
@@ -128,62 +126,51 @@ export default function Glossaire() {
 
 	const filteredItems = useMemo(() => {
 		let items = glossaireItems
-
-		if (selectedCategory) {
-			items = items.filter((item) => item.category === selectedCategory)
-		}
-
+		if (selectedCategory) items = items.filter((item) => item.category === selectedCategory)
 		if (searchTerm.length >= 2) {
-			const searchTermLower = searchTerm.toLowerCase()
-			items = items.filter(
-				(item) =>
-					item.command.toLowerCase().includes(searchTermLower) ||
-					item.description.toLowerCase().includes(searchTermLower),
-			)
+			const s = searchTerm.toLowerCase()
+			items = items.filter((item) => item.command.toLowerCase().includes(s) || item.description.toLowerCase().includes(s))
 		}
-
 		return items
 	}, [searchTerm, glossaireItems, selectedCategory])
 
 	const categoryCounts = useMemo(() => {
 		const counts: Record<string, number> = {}
-		glossaireItems.forEach((item) => {
-			counts[item.category] = (counts[item.category] || 0) + 1
-		})
+		glossaireItems.forEach((item) => { counts[item.category] = (counts[item.category] || 0) + 1 })
 		return counts
 	}, [glossaireItems])
 
-	const categories = Object.keys(categoryConfig).filter(cat => categoryCounts[cat] > 0)
+	const categories = Object.keys(categoryConfig).filter((cat) => categoryCounts[cat] > 0)
 
 	return (
-		<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-			<h1 className="mb-4">Glossaire des commandes Git</h1>
+		<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+			<h1 className="font-[family-name:var(--font-syne)] mb-4">Glossaire des commandes Git</h1>
 
 			<motion.div
-				initial={{ opacity: 0, y: 20 }}
+				initial={{ opacity: 0, y: 16 }}
 				animate={{ opacity: 1, y: 0 }}
-				transition={{ delay: 0.1, duration: 0.5 }}
-				className="glass-card p-6 mb-8"
+				transition={{ delay: 0.1, duration: 0.4 }}
+				className="p-5 bg-white border border-gray-200 rounded-xl mb-6"
 			>
-				<p className="text-lg text-gray-700">
-					Explorez <strong className="text-gradient">{glossaireItems.length} commandes Git</strong> organisées par catégories.
-					Utilisez la recherche ou filtrez par catégorie pour trouver rapidement ce dont vous avez besoin. 🚀
+				<p className="text-base text-gray-700 m-0">
+					Explorez <strong className="text-[#e03838]">{glossaireItems.length} commandes Git</strong> organisées par catégories.
+					Utilisez la recherche ou filtrez par catégorie pour trouver rapidement ce dont vous avez besoin.
 				</p>
 			</motion.div>
 
-			{/* Barre de recherche moderne */}
+			{/* Barre de recherche */}
 			<motion.div
-				initial={{ opacity: 0, y: 20 }}
+				initial={{ opacity: 0, y: 16 }}
 				animate={{ opacity: 1, y: 0 }}
-				transition={{ delay: 0.2, duration: 0.5 }}
-				className="relative mb-6"
+				transition={{ delay: 0.2, duration: 0.4 }}
+				className="relative mb-5"
 			>
 				<div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-					<Search className="h-5 w-5 text-gray-400" />
+					<Search className="h-4 w-4 text-gray-400" />
 				</div>
 				<input
 					type="text"
-					className="block w-full pl-12 pr-12 py-4 glass-card border-2 border-transparent focus:border-red-400 rounded-2xl leading-5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500/20 transition-all duration-300 text-lg"
+					className="block w-full pl-11 pr-11 py-3 border border-gray-200 focus:border-[#e03838] rounded-xl leading-5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-100 transition-all duration-200 text-base bg-white"
 					placeholder="Rechercher une commande (ex: commit, branch, push...)"
 					value={searchTerm}
 					onChange={(e) => setSearchTerm(e.target.value)}
@@ -193,34 +180,34 @@ export default function Glossaire() {
 						initial={{ scale: 0 }}
 						animate={{ scale: 1 }}
 						onClick={() => setSearchTerm("")}
-						className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-red-500 transition-colors"
+						className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-[#e03838] transition-colors"
 						aria-label="Effacer la recherche"
 					>
-						<X className="h-5 w-5" />
+						<X className="h-4 w-4" />
 					</motion.button>
 				)}
 			</motion.div>
 
 			{/* Filtres par catégorie */}
 			<motion.div
-				initial={{ opacity: 0, y: 20 }}
+				initial={{ opacity: 0, y: 16 }}
 				animate={{ opacity: 1, y: 0 }}
-				transition={{ delay: 0.3, duration: 0.5 }}
-				className="mb-8"
+				transition={{ delay: 0.3, duration: 0.4 }}
+				className="mb-6"
 			>
-				<div className="flex items-center gap-2 mb-4">
-					<Filter className="h-5 w-5 text-gray-500" />
-					<h3 className="text-lg font-semibold text-gray-700">Filtrer par catégorie</h3>
+				<div className="flex items-center gap-2 mb-3">
+					<Filter className="h-4 w-4 text-gray-400" />
+					<h3 className="text-sm font-semibold text-gray-600 m-0">Filtrer par catégorie</h3>
 				</div>
-				<div className="flex flex-wrap gap-3">
+				<div className="flex flex-wrap gap-2">
 					<motion.button
-						whileHover={{ scale: 1.05 }}
-						whileTap={{ scale: 0.95 }}
+						whileTap={{ scale: 0.97 }}
 						onClick={() => setSelectedCategory(null)}
-						className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${selectedCategory === null
-								? "bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg"
-								: "glass-card text-gray-700 hover:shadow-md"
-							}`}
+						className={`px-3 py-1.5 rounded-lg font-medium text-xs transition-all duration-200 border ${
+							selectedCategory === null
+								? "bg-[#e03838] text-white border-[#e03838]"
+								: "bg-white text-gray-600 border-gray-200 hover:border-gray-300"
+						}`}
 					>
 						Toutes ({glossaireItems.length})
 					</motion.button>
@@ -230,15 +217,15 @@ export default function Glossaire() {
 						return (
 							<motion.button
 								key={cat}
-								whileHover={{ scale: 1.05 }}
-								whileTap={{ scale: 0.95 }}
+								whileTap={{ scale: 0.97 }}
 								onClick={() => setSelectedCategory(cat === selectedCategory ? null : cat)}
-								className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 flex items-center gap-2 ${selectedCategory === cat
-										? `bg-gradient-to-r ${config.color} text-white shadow-lg`
-										: `glass-card text-gray-700 hover:shadow-md`
-									}`}
+								className={`px-3 py-1.5 rounded-lg font-medium text-xs transition-all duration-200 border flex items-center gap-1.5 ${
+									selectedCategory === cat
+										? "bg-[#e03838] text-white border-[#e03838]"
+										: "bg-white text-gray-600 border-gray-200 hover:border-gray-300"
+								}`}
 							>
-								<Icon className="h-4 w-4" />
+								<Icon className="h-3.5 w-3.5" />
 								{config.label} ({categoryCounts[cat] || 0})
 							</motion.button>
 						)
@@ -246,20 +233,20 @@ export default function Glossaire() {
 				</div>
 			</motion.div>
 
-			{/* Résultats */}
-			{searchTerm.length >= 2 || selectedCategory ? (
+			{/* Résultats count */}
+			{(searchTerm.length >= 2 || selectedCategory) && (
 				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
-					className="mb-6 flex items-center gap-2 text-gray-600"
+					className="mb-4 text-sm text-gray-500"
 				>
-					<span className="text-lg font-semibold text-gradient">{filteredItems.length}</span>
-					<span>résultat{filteredItems.length !== 1 ? "s" : ""} trouvé{filteredItems.length !== 1 ? "s" : ""}</span>
+					<span className="font-bold text-[#e03838]">{filteredItems.length}</span>
+					{" "}résultat{filteredItems.length !== 1 ? "s" : ""} trouvé{filteredItems.length !== 1 ? "s" : ""}
 				</motion.div>
-			) : null}
+			)}
 
 			{/* Liste des commandes */}
-			<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-8">
 				<AnimatePresence mode="popLayout">
 					{filteredItems.map((item, index) => {
 						const config = categoryConfig[item.category as keyof typeof categoryConfig]
@@ -268,26 +255,25 @@ export default function Glossaire() {
 							<motion.div
 								key={item.command}
 								layout
-								initial={{ opacity: 0, scale: 0.9 }}
+								initial={{ opacity: 0, scale: 0.96 }}
 								animate={{ opacity: 1, scale: 1 }}
-								exit={{ opacity: 0, scale: 0.9 }}
-								transition={{ delay: index * 0.02, duration: 0.3 }}
-								whileHover={{ y: -4, transition: { duration: 0.2 } }}
-								className="glass-card p-5 group hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-red-200"
+								exit={{ opacity: 0, scale: 0.96 }}
+								transition={{ delay: index * 0.015, duration: 0.25 }}
+								className="bg-white p-4 rounded-xl border border-gray-200 hover:border-[#e03838] hover:shadow-sm transition-all duration-200"
 							>
-								<div className="flex items-start gap-3 mb-3">
-									<div className={`p-2 rounded-lg bg-gradient-to-br ${config.color} flex-shrink-0`}>
-										<Icon className="h-5 w-5 text-white" />
+								<div className="flex items-start gap-3 mb-2">
+									<div className="p-1.5 rounded-md bg-gray-100 flex-shrink-0">
+										<Icon className="h-3.5 w-3.5 text-gray-600" />
 									</div>
 									<div className="flex-1 min-w-0">
-										<code className="text-sm font-mono font-semibold text-gray-800 bg-gray-100 px-3 py-1.5 rounded-lg block overflow-x-auto">
+										<code className="text-xs font-mono font-semibold text-gray-800 bg-gray-50 border border-gray-200 px-2.5 py-1 rounded-md block overflow-x-auto">
 											{item.command}
 										</code>
 									</div>
 								</div>
-								<p className="text-gray-700 leading-relaxed pl-11">{item.description}</p>
-								<div className="mt-3 pl-11">
-									<span className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-1 rounded-full ${config.bg} text-gray-700`}>
+								<p className="text-gray-600 text-sm leading-relaxed pl-9 m-0">{item.description}</p>
+								<div className="mt-2 pl-9">
+									<span className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full border ${config.accent}`}>
 										{config.label}
 									</span>
 								</div>
@@ -299,20 +285,17 @@ export default function Glossaire() {
 
 			{filteredItems.length === 0 && (
 				<motion.div
-					initial={{ opacity: 0, y: 20 }}
+					initial={{ opacity: 0, y: 16 }}
 					animate={{ opacity: 1, y: 0 }}
-					className="glass-card p-12 text-center"
+					className="p-12 text-center bg-white border border-gray-200 rounded-xl"
 				>
-					<div className="text-6xl mb-4">🔍</div>
-					<h3 className="text-xl font-semibold text-gray-700 mb-2">Aucune commande trouvée</h3>
-					<p className="text-gray-500">
+					<Search className="w-10 h-10 text-gray-300 mx-auto mb-4" />
+					<h3 className="text-base font-semibold text-gray-600 mb-2 mt-0">Aucune commande trouvée</h3>
+					<p className="text-gray-400 text-sm m-0">
 						Essayez avec d'autres mots-clés ou{" "}
 						<button
-							onClick={() => {
-								setSearchTerm("")
-								setSelectedCategory(null)
-							}}
-							className="text-red-500 hover:text-red-600 underline font-medium"
+							onClick={() => { setSearchTerm(""); setSelectedCategory(null) }}
+							className="text-[#e03838] hover:underline font-medium"
 						>
 							réinitialisez les filtres
 						</button>
@@ -324,4 +307,3 @@ export default function Glossaire() {
 		</motion.div>
 	)
 }
-

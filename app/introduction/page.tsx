@@ -23,7 +23,7 @@ export default function Introduction() {
       {/* Git */}
       <ContentSection delay={0.2}>
         <div className="flex items-center gap-4 mb-6">
-          <div className="p-3 bg-[#e03838] rounded-xl flex-shrink-0">
+          <div className="p-3 bg-[#727477] rounded-xl flex-shrink-0">
             <Image src="/images/git.png" alt="Git" width={32} height={32} />
           </div>
           <div>
@@ -67,7 +67,7 @@ export default function Introduction() {
       {/* GitHub */}
       <ContentSection delay={0.3}>
         <div className="flex items-center gap-4 mb-6">
-          <div className="p-3 bg-gray-900 rounded-xl flex-shrink-0">
+          <div className="p-3 bg-[#727477] rounded-xl flex-shrink-0">
             <Image src="/images/github.png" alt="GitHub" width={32} height={32} />
           </div>
           <div>
@@ -94,7 +94,7 @@ export default function Introduction() {
       {/* GitLab */}
       <ContentSection delay={0.4}>
         <div className="flex items-center gap-4 mb-6">
-          <div className="p-3 bg-[#e03838] rounded-xl flex-shrink-0">
+          <div className="p-3 bg-[#727477] rounded-xl flex-shrink-0">
             <Image src="/images/gitlab.png" alt="GitLab" width={32} height={32} />
           </div>
           <div>
